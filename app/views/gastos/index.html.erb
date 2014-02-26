@@ -1,0 +1,71 @@
+<h1>Rendición de gastos José Esteves
+	<%unless !@desde || !@hasta %>
+		<%= "[ "+ @desde.to_s + " → " + @hasta.to_s + " ]"  %>
+	<%else%>
+		<%= "[TODOS LOS REGISTROS]"  %>
+<%end %>
+</h1>
+<div id="filtro" class="modal">
+	<form method="get" action=<%= gastos_path %> >
+		DESDE: <input type="date" name="desde" value=<%=@desde%> /><br>
+		HASTA: <input type="date" name="hasta" value=<%=@hasta%> /><br>
+	<input type="submit" value="Filtrar"i style="align:center">
+</form>
+</div>
+<div class="CSSTableGenerator">
+<table>
+    <tr>
+      <td>Fecha</td>
+      <td>Concepto</td>
+      <td>Ingreso</td>
+      <td>Egreso</td>
+      <td>Saldo</td>
+      <td>Cliente</td>
+      <td class="noPrint"></td>
+      <td class="noPrint"></td>
+    </tr>
+
+	<% if @saldoInicial != 0 %>
+		<tr>
+			<td> <%= @desde.strftime("%d/%m/%Y") %> </td>
+			<td colspan="3">SALDO INICIAL AL <%= @desde %></td>
+			<td><%= @saldoInicial %></td>
+			<td colspan="3"></td>	
+		
+		</tr>
+    <% end %>
+	<% saldo = 0 + @saldoInicial %>
+	<% @gastos.each do |gasto| %>
+      <tr>
+        <td><%= gasto.fecha.strftime("%d/%m/%Y") %></td>
+        <td><%= gasto.concepto %></td>
+        <td><%= gasto.ingreso %></td>
+        <td><%= gasto.egreso %></td>
+				<td><%= saldo = saldo + gasto.ingreso.to_f - gasto.egreso.to_f %></td>
+
+        <td><%= gasto.cliente.nombre %></td>
+
+        <td class="noPrint"><%= link_to 'Editar', edit_gasto_path(gasto) %></td>
+        <td class="noPrint"><%= link_to 'Borrar', gasto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+</table>
+<br>
+<br>
+<table>
+    <tr>
+      <td>Cliente</td>
+      <td>Total</td>
+    </tr>
+
+	<% @totalCliente.each do |k,v| %>
+		<tr>
+			<td><%= Cliente.find(k).nombre %> </td>
+			<td><%= v.to_f %></td>
+		</tr>	
+<% end %>
+</table>
+</div>
+<br>
+
+<%= link_to 'New Gasto', new_gasto_path, :class=>"noPrint" %>

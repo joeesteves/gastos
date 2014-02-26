@@ -1,0 +1,49 @@
+<h1>Rendición de gastos José Esteves</h1>
+<div class="CSSTableGenerator">
+<table>
+    <tr>
+      <td>Fecha</td>
+      <td>Concepto</td>
+      <td>Ingreso</td>
+      <td>Egreso</td>
+      <td>Saldo</td>
+      <td>Cliente</td>
+      <td class="noPrint"></td>
+      <td class="noPrint"></td>
+    </tr>
+
+	<% saldo = 0 %>
+    <% @gastos.each do |gasto| %>
+      <tr>
+        <td><%= gasto.fecha.strftime("%d/%m/%Y") %></td>
+        <td><%= gasto.concepto %></td>
+        <td><%= gasto.ingreso %></td>
+        <td><%= gasto.egreso %></td>
+				<td><%= saldo = saldo + gasto.ingreso.to_f - gasto.egreso.to_f %></td>
+
+        <td><%= gasto.cliente.nombre %></td>
+
+        <td class="noPrint"><%= link_to 'Editar', edit_gasto_path(gasto) %></td>
+        <td class="noPrint"><%= link_to 'Borrar', gasto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+</table>
+<br>
+<br>
+<table>
+    <tr>
+      <td>Cliente</td>
+      <td>Total</td>
+    </tr>
+
+	<% @totalCliente.each do |k,v| %>
+		<tr>
+			<td><%= Cliente.find(k).nombre %> </td>
+			<td><%= v.to_f %></td>
+		</tr>	
+<% end %>
+</table>
+</div>
+<br>
+
+<%= link_to 'New Gasto', new_gasto_path %>

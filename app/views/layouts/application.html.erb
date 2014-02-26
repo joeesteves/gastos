@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gastos</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<div id="overlay">
+<input id="new_controller_path" type="hidden" value="<%= root_path + controller_name %>/new">
+</div>
+<%= yield %>
+
+</body>
+</html>
