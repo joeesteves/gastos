@@ -38,7 +38,7 @@
 	<% @gastos.each do |gasto| %>
       <tr>
         <td><%= gasto.fecha.strftime("%d/%m/%Y") %></td>
-        <td><%= gasto.concepto %></td>
+        <td><%= gasto.concepto.html_safe %></td>
         <td><%= gasto.ingreso %></td>
         <td><%= gasto.egreso %></td>
 				<td><%= saldo = saldo + gasto.ingreso.to_f - gasto.egreso.to_f %></td>
