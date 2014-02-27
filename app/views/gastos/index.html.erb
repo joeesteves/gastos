@@ -1,6 +1,6 @@
 <h1>Rendición de gastos José Esteves
 	<%unless !@desde || !@hasta %>
-		<%= "[ "+ @desde.to_s + " → " + @hasta.to_s + " ]"  %>
+		<%= "[ "+ @desde.strftime("%d/%m/%Y") + " → " + @hasta.strftime("%d/%m/%Y") + " ]"  %>
 	<%else%>
 		<%= "[TODOS LOS REGISTROS]"  %>
 <%end %>
@@ -8,7 +8,7 @@
 <div id="filtro" class="modal">
 	<form method="get" action=<%= gastos_path %> >
 		DESDE: <input type="date" name="desde" value=<%=@desde%> /><br>
-		HASTA: <input type="date" name="hasta" value=<%=@hasta%> /><br>
+		HASTA: <input type="date" name="hasta" value=<%=@hasta %> /><br>
 	<input type="submit" value="Filtrar"i style="align:center">
 </form>
 </div>
@@ -45,7 +45,7 @@
 
         <td><%= gasto.cliente.nombre %></td>
 
-        <td class="noPrint"><%= link_to 'Editar', edit_gasto_path(gasto) %></td>
+				<td class="noPrint"><%= link_to 'Editar', edit_gasto_path(gasto), :remote => true %></td>
         <td class="noPrint"><%= link_to 'Borrar', gasto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -67,5 +67,10 @@
 </table>
 </div>
 <br>
+<div id="nuevo" class="modal_form">
+<%= render 'form' %>
+</div>
 
-<%= link_to 'New Gasto', new_gasto_path, :class=>"noPrint" %>
+<div id="edit" class="modal_form">
+</div>
+<%= link_to 'New Gasto', '#' ,:class=>"noPrint", :id => "crearNuevo", :remote=>true %>

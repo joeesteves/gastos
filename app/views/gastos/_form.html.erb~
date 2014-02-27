@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :cliente_id %><br>
-		<%= f.collection_select(:cliente_id, Cliente.all, :id, :nombre,{}, {:tabindex =>5}) %>
+		<%= f.collection_select(:cliente_id, Cliente.all, :id, :nombre,{:tabindex =>5}, {}) %>
   </div>
   <div class="actions">
     <%= f.submit "crear", :tabindex => 6 %>

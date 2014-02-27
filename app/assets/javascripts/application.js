@@ -19,16 +19,21 @@ $(function(){
 		e.preventDefault();
 		e.stopPropagation();
 		if(e.ctrlKey && e.shiftKey && e.keyCode==65){
-			$(location).attr('href',$('#new_controller_path').val());
+//			$(location).attr('href',$('#new_controller_path').val());
+			$('#nuevo').css('display','block');
+			$('#overlay').addClass('overlay');
+			$('#fecha').focus();
 		}
-		if(e.ctrlKey && e.shiftKey && e.keyCode==70){
-			$('#filtro').css('display','block');
+
+		if(e.ctrlKey && e.shiftKey && e.keyCode==70){ // ctrl+shift+f
+			$('.modal').css('display','block');
 			$('#overlay').addClass('overlay');	
-			$('#filtro :input').first().focus();
+			$('.modal :input').first().focus();
 
 		}	
-		if(e.keyCode==27){
-			$('#filtro').css('display','none');
+		if(e.keyCode==27){ //esc 
+			$('.modal_form, .modal').css('display','none');
+			$('#nuevo').css('display','none');
 			$('#overlay').removeClass('overlay');
 		}
 	});	

@@ -1,4 +1,17 @@
-<h1>Rendición de gastos José Esteves</h1>
+<h1>Rendición de gastos José Esteves
+	<%unless !@desde || !@hasta %>
+		<%= "[ "+ @desde.to_s + " → " + @hasta.to_s + " ]"  %>
+	<%else%>
+		<%= "[TODOS LOS REGISTROS]"  %>
+<%end %>
+</h1>
+<div id="filtro" class="modal">
+	<form method="get" action=<%= gastos_path %> >
+		DESDE: <input type="date" name="desde" value=<%=@desde%> /><br>
+		HASTA: <input type="date" name="hasta" value=<%=@hasta%> /><br>
+	<input type="submit" value="Filtrar"i style="align:center">
+</form>
+</div>
 <div class="CSSTableGenerator">
 <table>
     <tr>
@@ -12,8 +25,17 @@
       <td class="noPrint"></td>
     </tr>
 
-	<% saldo = 0 %>
-    <% @gastos.each do |gasto| %>
+	<% if @saldoInicial != 0 %>
+		<tr>
+			<td> <%= @desde.strftime("%d/%m/%Y") %> </td>
+			<td colspan="3">SALDO INICIAL AL <%= @desde %></td>
+			<td><%= @saldoInicial %></td>
+			<td colspan="3"></td>	
+		
+		</tr>
+    <% end %>
+	<% saldo = 0 + @saldoInicial %>
+	<% @gastos.each do |gasto| %>
       <tr>
         <td><%= gasto.fecha.strftime("%d/%m/%Y") %></td>
         <td><%= gasto.concepto %></td>
@@ -45,5 +67,7 @@
 </table>
 </div>
 <br>
-
-<%= link_to 'New Gasto', new_gasto_path %>
+<div id="nuevo" class="modal_new">
+<%= render 'form' %>
+</div>
+<%= link_to 'New Gasto', # ,:class=>"noPrint", :id => "crearNuevo", :remote=>true %>

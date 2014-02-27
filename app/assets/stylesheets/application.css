@@ -11,7 +11,6 @@
  *= require_self
  *= require_tree .
  */
-
 @media print {
 .noPrint {
     display:none;
@@ -26,10 +25,11 @@
 	width: 20%;
 	height: 15%;
 	padding: 16px;
-	background: #fff;
+	background: #e5e5e5;
 	color: #333;
 	z-index:1002;
 	overflow: auto;
+	border-radius: 20px; // en Firefox
 }
 .overlay{
 	position: absolute;
@@ -39,5 +39,20 @@
 	height: 100%;
 	z-index: 10;
 	background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+.modal_form {
+	text-align: center;
+	display: none;
+	position: absolute;
+	top: 24%;
+	left: 30%;
+	width: 40%;
+	height: 52%;
+	padding: 16px;
+	background: #e5e5e5;
+	color: #333;
+	z-index:1002;
+	overflow: auto;
+	border-radius: 20px;
 }
 

@@ -11,3 +11,47 @@
  *= require_self
  *= require_tree .
  */
+
+@media print {
+.noPrint {
+    display:none;
+  }
+}
+.modal {
+	text-align: center;
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 40%;
+	width: 20%;
+	height: 15%;
+	padding: 16px;
+	background: #fff;
+	color: #333;
+	z-index:1002;
+	overflow: auto;
+}
+.overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+.modal_new {
+	text-align: center;
+	display: block;
+	position: absolute;
+	top: 10%;
+	left: 15%;
+	width: 60%;
+	height: 60%;
+	padding: 16px;
+	background: #fff;
+	color: #333;
+	z-index:1002;
+	overflow: auto;
+}
+

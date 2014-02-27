@@ -4,8 +4,6 @@ class GastosController < ApplicationController
   # GET /gastos
   # GET /gastos.json
   def index
- 		@gasto = Gasto.new
-    @gasto.fecha = Date.today
 		unless params[:desde] && params[:hasta]
 			@totalCliente = Gasto.group(:cliente_id).sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)')
 			@gastos = Gasto.all.order(:fecha)
@@ -34,16 +32,11 @@ class GastosController < ApplicationController
 	end
 
   # GET /gastos/1/edit
-	def edit
-		@gasto = Gasto.find(params[:id])
+  def edit
+  end
 
-		respond_to do |format|	
-			format.js
-		end
-	end
-
-	# POST /gastos
-	# POST /gastos.json
+  # POST /gastos
+  # POST /gastos.json
   def create
     @gasto = Gasto.new(gasto_params)
 
@@ -63,7 +56,7 @@ class GastosController < ApplicationController
   def update
     respond_to do |format|
       if @gasto.update(gasto_params)
-        format.html { redirect_to gastos_path, notice: 'Gasto was successfully updated.' }
+        format.html { redirect_to @gasto, notice: 'Gasto was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

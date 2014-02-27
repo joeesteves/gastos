@@ -16,10 +16,26 @@
 //= require_tree .
 $(function(){
 	$(this).keyup(function(e) {
-			e.preventDefault();
-			e.stopPropagation();
-			if(e.ctrlKey && e.shiftKey && e.keyCode==65){
-			$(location).attr('href',$('#new_controller_path').val())}
-});	
+		e.preventDefault();
+		e.stopPropagation();
+		if(e.ctrlKey && e.shiftKey && e.keyCode==65){
+//			$(location).attr('href',$('#new_controller_path').val());
+			$('#nuevo').css('display','block');
+			$('#overlay').addClass('overlay');
+			$('#nuevo :input').first().focus();
+		}
+
+		if(e.ctrlKey && e.shiftKey && e.keyCode==70){
+			$('#filtro').css('display','block');
+			$('#overlay').addClass('overlay');	
+			$('#filtro :input').first().focus();
+
+		}	
+		if(e.keyCode==27){
+			$('#filtro').css('display','none');
+			$('#nuevo').css('display','none');
+			$('#overlay').removeClass('overlay');
+		}
+	});	
 });	
 
