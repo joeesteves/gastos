@@ -4,7 +4,7 @@ class ClientesController < ApplicationController
   # GET /clientes
   # GET /clientes.json
   def index
-    @clientes = Cliente.all
+		@clientes = Cliente.all
   end
 
   # GET /clientes/1
@@ -15,7 +15,9 @@ class ClientesController < ApplicationController
   # GET /clientes/new
   def new
     @cliente = Cliente.new
-  end
+		@desde = params[:desde]
+		@hasta = params[:hasta]
+	end
 
   # GET /clientes/1/edit
   def edit
@@ -28,7 +30,7 @@ class ClientesController < ApplicationController
 
     respond_to do |format|
       if @cliente.save
-        format.html { redirect_to gastos_path, notice: 'Cliente was successfully created.' }
+        format.html { redirect_to gastos_path(:desde => params[:desde], :hasta => params[:hasta]) }
         format.json { render action: 'show', status: :created, location: @cliente }
       else
         format.html { render action: 'new' }

@@ -77,7 +77,7 @@
 &nbsp
 <%= link_to 'Filtros(Ctrl + Shift + f)', '#' ,:class=>"noPrint", :id => "abrirFiltro", :remote=>true %>
 &nbsp
-<%= link_to 'Nuevo Cliente', new_cliente_path() ,:class=>"noPrint"%>
+<%= link_to 'Nuevo Cliente', new_cliente_path(:desde => @desde, :hasta => @hasta) ,:class=>"noPrint"%>
 &nbsp
 <%= link_to 'Mi usuario', edit_user_path(@current_user.id) ,:class=>"noPrint"%>
 &nbsp

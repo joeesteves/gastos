@@ -19,7 +19,9 @@
     <%= f.label :nombre %><br>
     <%= f.text_field :nombre %>
   </div>
-  <div class="actions">
+	<input type="hidden" name="desde" value="<%=@desde%>" >
+	<input type="hidden" name="hasta" value="<%=@hasta%>" >
+	<div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
