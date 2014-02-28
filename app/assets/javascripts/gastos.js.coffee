@@ -5,6 +5,9 @@ ready = ->
 	$('#crearNuevo').click ->
 		$('#nuevo').css('display','block')
 		$('#overlay').addClass('overlay');
+	$('#abrirFiltro').click ->
+		$('#filtro').css('display','block')
+		$('#overlay').addClass('overlay');
 $(document).ready(ready)
 $(document).on('page:load', ready)
 

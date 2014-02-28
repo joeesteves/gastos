@@ -7,8 +7,8 @@ class GastosController < ApplicationController
  		@gasto = Gasto.new
     @gasto.fecha = Date.today
 		unless params[:desde] && params[:hasta]
-			@totalCliente = Gasto.group(:cliente_id).sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)')
-			@gastos = Gasto.all.order(:fecha)
+			@totalCliente = Gasto.mios(@current_user.id).group(:cliente_id).sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)')
+			@gastos = Gasto.mios(@current_user.id).order(:fecha)
 			@saldoInicial = 0
 			hoy = Date.today()
 			@desde = Date.new(hoy.year,hoy.month,1)
@@ -16,9 +16,9 @@ class GastosController < ApplicationController
 		else
 			@desde = params[:desde].to_date
 			@hasta = params[:hasta].to_date
-			@totalCliente = Gasto.where("fecha >= '#{params[:desde]}' and fecha <=  '#{params[:hasta]}'").group(:cliente_id).sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)')
-			@gastos = Gasto.where("fecha >= '#{params[:desde]}' and fecha <=  '#{params[:hasta]}'").order(:fecha)
-			@saldoInicial = Gasto.where("fecha < '#{params[:desde]}'").sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)').to_f rescue nil
+			@totalCliente = Gasto.mios(@current_user.id).where("fecha >= '#{params[:desde]}' and fecha <=  '#{params[:hasta]}'").group(:cliente_id).sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)')
+			@gastos = Gasto.mios(@current_user.id).where("fecha >= '#{params[:desde]}' and fecha <=  '#{params[:hasta]}'").order(:fecha)
+			@saldoInicial = Gasto.mios(@current_user.id).where("fecha < '#{params[:desde]}'").sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)').to_f rescue nil
 		end
 	end
 
@@ -46,7 +46,7 @@ class GastosController < ApplicationController
 	# POST /gastos.json
   def create
     @gasto = Gasto.new(gasto_params)
-
+		@gasto.user_id = @current_user.id
     respond_to do |format|
       if @gasto.save
         format.html { redirect_to gastos_path, notice: 'Gasto was successfully created.' }
@@ -90,6 +90,6 @@ class GastosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gasto_params
-      params.require(:gasto).permit(:fecha, :concepto, :ingreso, :egreso, :cliente_id)
+      params.require(:gasto).permit(:fecha, :concepto, :ingreso, :egreso, :cliente_id, :user_id)
     end
 end
