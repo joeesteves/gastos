@@ -46,7 +46,7 @@
         <td><%= gasto.cliente.nombre %></td>
 
 				<td class="noPrint"><%= link_to 'Editar', edit_gasto_path(gasto), :remote => true %></td>
-        <td class="noPrint"><%= link_to 'Borrar', gasto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="noPrint"><%= link_to 'Borrar', gasto, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
       </tr>
     <% end %>
 </table>
@@ -76,6 +76,8 @@
 <%= link_to 'Nuevo(Ctrl + Shift + a)', '#' ,:class=>"noPrint", :id => "crearNuevo", :remote=>true %>
 &nbsp
 <%= link_to 'Filtros(Ctrl + Shift + f)', '#' ,:class=>"noPrint", :id => "abrirFiltro", :remote=>true %>
+&nbsp
+<%= link_to 'Nuevo Cliente', new_cliente_path() ,:class=>"noPrint"%>
 &nbsp
 <%= link_to 'Mi usuario', edit_user_path(@current_user.id) ,:class=>"noPrint"%>
 &nbsp
