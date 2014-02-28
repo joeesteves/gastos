@@ -3,11 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 ready = ->
 	$('#crearNuevo').click ->
-		$('#nuevo').css('display','block')
-		$('#overlay').addClass('overlay');
+		nuevo()		
 	$('#abrirFiltro').click ->
-		$('#filtro').css('display','block')
-		$('#overlay').addClass('overlay');
+		filtro()
 $(document).ready(ready)
 $(document).on('page:load', ready)
 

@@ -1,15 +1,3 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives.
-//
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
@@ -18,24 +6,31 @@ $(function(){
 	$(this).keyup(function(e) {
 		e.preventDefault();
 		e.stopPropagation();
-		if(e.ctrlKey && e.shiftKey && e.keyCode==65){
-//			$(location).attr('href',$('#new_controller_path').val());
-			$('#nuevo').css('display','block');
-			$('#overlay').addClass('overlay');
-			$('#fecha').focus();
+		if(e.ctrlKey && e.shiftKey && e.keyCode==65){ //crtl+shift+a
+			nuevo();
 		}
-
 		if(e.ctrlKey && e.shiftKey && e.keyCode==70){ // ctrl+shift+f
-			$('.modal').css('display','block');
-			$('#overlay').addClass('overlay');	
-			$('.modal :input').first().focus();
-
+			filtro();
 		}	
-		if(e.keyCode==27){ //esc 
-			$('.modal_form, .modal').css('display','none');
-			$('#nuevo').css('display','none');
-			$('#overlay').removeClass('overlay');
+		if(e.keyCode==27){ // esc 
+			esc();
 		}
 	});	
 });	
 
+function nuevo(){
+	$('#nuevo').css('display','block');
+	$('#overlay').addClass('overlay');
+	$('#nuevo #fecha').focus();
+};
+
+function filtro(){
+	$('.modal').css('display','block');
+	$('#overlay').addClass('overlay');	
+	$('.modal :input').first().focus();
+};
+
+function esc(){
+	$('.modal_form, .modal').css('display','none');
+	$('#overlay').removeClass('overlay');
+};
