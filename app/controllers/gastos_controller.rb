@@ -49,7 +49,7 @@ class GastosController < ApplicationController
 		@gasto.user_id = @current_user.id
     respond_to do |format|
       if @gasto.save
-        format.html { redirect_to gastos_path, notice: 'Gasto was successfully created.' }
+        format.html { redirect_to :back }
         format.json { render action: 'show', status: :created, location: @gasto }
       else
         format.html { render action: 'new' }
@@ -63,7 +63,7 @@ class GastosController < ApplicationController
   def update
     respond_to do |format|
       if @gasto.update(gasto_params)
-        format.html { redirect_to gastos_path, notice: 'Gasto was successfully updated.' }
+        format.html { redirect_to :back }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -77,7 +77,7 @@ class GastosController < ApplicationController
   def destroy
     @gasto.destroy
     respond_to do |format|
-      format.html { redirect_to gastos_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
