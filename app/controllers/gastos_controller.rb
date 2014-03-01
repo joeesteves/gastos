@@ -7,19 +7,16 @@ class GastosController < ApplicationController
  		@gasto = Gasto.new
     @gasto.fecha = Date.today
 		unless params[:desde] && params[:hasta]
-			@totalCliente = Gasto.mios(@current_user.id).group(:cliente_id).sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)')
-			@gastos = Gasto.mios(@current_user.id).order(:fecha)
-			@saldoInicial = 0
 			hoy = Date.today()
 			@desde = Date.new(hoy.year,hoy.month,1)
 			@hasta = Date.new(hoy.year,hoy.month,-1)
 		else
 			@desde = params[:desde].to_date
 			@hasta = params[:hasta].to_date
-			@totalCliente = Gasto.mios(@current_user.id).where("fecha >= '#{params[:desde]}' and fecha <=  '#{params[:hasta]}'").group(:cliente_id).sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)')
-			@gastos = Gasto.mios(@current_user.id).where("fecha >= '#{params[:desde]}' and fecha <=  '#{params[:hasta]}'").order(:fecha)
-			@saldoInicial = Gasto.mios(@current_user.id).where("fecha < '#{params[:desde]}'").sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)').to_f rescue nil
 		end
+			@totalCliente = Gasto.mios(@current_user.id).where("fecha >= '#{@desde}' and fecha <=  '#{@hasta}'").group(:cliente_id).sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)')
+			@gastos = Gasto.mios(@current_user.id).where("fecha >= '#{@desde}' and fecha <=  '#{@hasta}'").order(:fecha)
+			@saldoInicial = Gasto.mios(@current_user.id).where("fecha < '#{@desde}'").sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)').to_f rescue nil
 	end
 
   # GET /gastos/1
