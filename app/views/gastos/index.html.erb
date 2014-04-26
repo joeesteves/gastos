@@ -1,3 +1,4 @@
+<input id="action" type="hidden" value="<%= action_name %>">
 <h1>Rendición de gastos <%=@current_user.nombre%>
 	<%unless !@desde || !@hasta %>
 		<%= "[ "+ @desde.strftime("%d/%m/%Y") + " → " + @hasta.strftime("%d/%m/%Y") + " ]"  %>
@@ -9,7 +10,7 @@
 	<form method="get" action=<%= gastos_path %> >
 		DESDE: <input type="date" name="desde" value=<%=@desde%> /><br>
 		HASTA: <input type="date" name="hasta" value=<%=@hasta %> /><br>
-	<input type="submit" value="Filtrar"i style="align:center">
+	<input type="submit" value="Filtrar" style="align:center">
 </form>
 </div>
 <div class="CSSTableGenerator">
@@ -38,7 +39,7 @@
 	<% @gastos.each do |gasto| %>
       <tr>
         <td><%= gasto.fecha.strftime("%d/%m/%Y") %></td>
-        <td><%= gasto.concepto.html_safe %></td>
+        <td><%= gasto.concepto.upcase.html_safe %></td>
         <td><%= gasto.ingreso %></td>
         <td><%= gasto.egreso %></td>
 				<td><%= saldo = saldo + gasto.ingreso.to_f - gasto.egreso.to_f %></td>
@@ -73,6 +74,7 @@
 
 <div id="edit" class="modal_form">
 </div>
+
 <%= link_to 'Nuevo(Ctrl + Shift + a)', '#' ,:class=>"noPrint", :id => "crearNuevo", :remote=>true %>
 &nbsp
 <%= link_to 'Filtros(Ctrl + Shift + f)', '#' ,:class=>"noPrint", :id => "abrirFiltro", :remote=>true %>

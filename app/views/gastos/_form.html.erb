@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :concepto %><br>
-    <%= f.text_area :concepto, :tabindex =>2 %>
+		<%= f.text_area :concepto, :tabindex =>2, :style=> 'width:400px' %>
   </div>
   <div class="field">
     <%= f.label :ingreso %><br>
@@ -28,9 +28,14 @@
     <%= f.text_field :egreso, :tabindex =>4 %>
   </div>
   <div class="field">
-    <%= f.label :cliente_id %><br>
-		<%= f.collection_select(:cliente_id, Cliente.all, :id, :nombre,{}, {:tabindex =>5}) %>
-  </div>
+		<%= f.label :cliente_id %><br>
+		<% unless @gasto.id %>
+		<%= f.collection_select(:cliente_id, Cliente.all, :id, :nombre, {:selected =>Gasto.last.cliente.id}, {:tabindex =>5}) %>
+	<%else%>
+		<%= f.collection_select(:cliente_id, Cliente.all, :id, :nombre, {}, {:tabindex =>5}) %>
+		<%end%>
+	
+	</div>
   <div class="actions">
     <%= f.submit "crear", :tabindex => 6 %>
   </div>
