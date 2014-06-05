@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .CSSTableGenerator {
-
 	margin:0px;padding:0px;
 
 	width:100%;	box-shadow: 10px 10px 5px #888888;
@@ -42,7 +41,8 @@
 
 	border-top-left-radius:0px;
 
-}.CSSTableGenerator table{
+}
+.CSSTableGenerator table{
 
 	width:100%;
 
@@ -50,7 +50,8 @@
 
 	margin:0px;padding:0px;
 
-}.CSSTableGenerator tr:last-child td:last-child {
+}
+.CSSTableGenerator tr:last-child td:last-child {
 
 	-moz-border-radius-bottomright:0px;
 
@@ -108,21 +109,22 @@
 
 	text-align:left;
 
-	padding:7px;
+	padding:3px;
 
-	font-size:10px;
+	font-size:13px;
 
-	font-family:arial;
 
 	font-weight:normal;
 
 	color:#000000;
 
-}.CSSTableGenerator tr:last-child td{
+}
+.CSSTableGenerator tr:last-child td{
 
 	border-width:0px 1px 0px 0px;
 
-}.CSSTableGenerator tr td:last-child{
+}
+.CSSTableGenerator tr td:last-child{
 
 	border-width:0px 0px 1px 0px;
 
@@ -146,7 +148,6 @@
 
 	font-size:14px;
 
-	font-family:arial;
 
 	font-weight:bold;
 
