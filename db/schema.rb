@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227235704) do
+ActiveRecord::Schema.define(version: 20140609011028) do
 
   create_table "clientes", force: true do |t|
     t.string   "codigo"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140227235704) do
   create_table "gastos", force: true do |t|
     t.date     "fecha"
     t.text     "concepto"
-    t.decimal  "ingreso",    precision: 8,  scale: 2
-    t.decimal  "egreso",     precision: 10, scale: 0
+    t.decimal  "ingreso",    precision: 8, scale: 2
+    t.decimal  "egreso",     precision: 8, scale: 2
     t.integer  "cliente_id"
     t.datetime "created_at"
     t.datetime "updated_at"
