@@ -18,13 +18,13 @@ $(function(){
 	});	
 });	
 
-function nuevo(){
+function nuevo() {
 	$('#nuevo').css('display','block');
 	$('#overlay').addClass('overlay');
 	$('#nuevo #fecha').focus();
 };
 
-function filtro(){
+function filtro() {
 	$('.modal').css('display','block');
 	$('#overlay').addClass('overlay');	
 	$('.modal :input').first().focus();
