@@ -17,6 +17,12 @@ class ClientesController < ApplicationController
     @cliente = Cliente.new
 		@desde = params[:desde]
 		@hasta = params[:hasta]
+    if Gasto.last.nil?
+      @ultimo_cliente = Cliente.last.id
+    else
+      @ultimo_cliente = Gasto.last.cliente.id
+    end
+
 	end
 
   # GET /clientes/1/edit

@@ -1,7 +1,7 @@
 development:
   adapter: mysql2
   encode: utf8
-  database: gastos
+  database: gastos_test
   pool: 5
   timeout: 5000
   username: root
