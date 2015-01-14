@@ -2,7 +2,6 @@
 <table>
   <thead>
     <tr>
-      <th>Codigo</th>
       <th>Nombre</th>
       <th></th>
       <th></th>
@@ -13,7 +12,6 @@
   <tbody>
     <% @clientes.each do |cliente| %>
       <tr>
-        <td><%= cliente.codigo %></td>
         <td><%= cliente.nombre %></td>
         <td><%= link_to 'Show', cliente %></td>
         <td><%= link_to 'Edit', edit_cliente_path(cliente) %></td>
