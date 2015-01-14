@@ -2,6 +2,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require chosen
+
 $(function(){
 	$(this).keyup(function(e) {
 		e.preventDefault();
