@@ -17,7 +17,12 @@ class GastosController < ApplicationController
 			@totalCliente = Gasto.mios(@current_user.id).where("fecha >= '#{@desde}' and fecha <=  '#{@hasta}'").group(:cliente_id).sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)')
 			@gastos = Gasto.mios(@current_user.id).where("fecha >= '#{@desde}' and fecha <=  '#{@hasta}'").order(:fecha)
 			@saldoInicial = Gasto.mios(@current_user.id).where("fecha < '#{@desde}'").sum('COALESCE(ingreso, 0)- COALESCE(egreso, 0)').to_f rescue nil
-	end
+	 if Gasto.last.nil?
+      @ultimo_cliente = Cliente.last.id
+    else
+      @ultimo_cliente = Gasto.last.cliente.id
+    end
+  end
 
   # GET /gastos/1
   # GET /gastos/1.json
