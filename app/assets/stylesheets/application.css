@@ -17,6 +17,11 @@
     display:none;
   }
 }
+#crear{
+	width: 40%;
+	padding: 8px;
+	margin-top: 20px;
+}
 .modal {
 	text-align: center;
 	display: none;
@@ -45,15 +50,15 @@
 	text-align: center;
 	display: none;
 	position: absolute;
-	top: 24%;
+	top: 5%;
 	left: 30%;
 	width: 40%;
-	height: 52%;
+	min-height: 52%;
 	padding: 16px;
 	background: #e5e5e5;
 	color: #333;
 	z-index:1002;
-	overflow: auto;
+	overflow:au;
 	border-radius: 20px;
 }
 

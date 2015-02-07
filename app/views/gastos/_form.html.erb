@@ -1,6 +1,6 @@
 <%= hidden_field_tag 'esForm', 'true' %>
 
-<%= form_for(@gasto) do |f| %>|
+<%= form_for(@gasto) do |f| %>
   <% if @gasto.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@gasto.errors.count, "error") %> prohibited this gasto from being saved:</h2>
@@ -39,6 +39,6 @@
 	
 	</div>
   <div class="actions">
-    <%= f.submit "crear", :tabindex => 6 %>
+    <%= f.submit "CREAR", id: "crear", :tabindex => 6 %>
   </div>
 <% end %>
