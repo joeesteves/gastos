@@ -22,6 +22,7 @@ class GastosController < ApplicationController
     else
       @ultimo_cliente = Gasto.last.cliente.id
     end
+    @clientes = Cliente.xUltimoUso(session[:user_id])
   end
 
   # GET /gastos/1

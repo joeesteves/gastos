@@ -32,9 +32,9 @@
   <div class="field">
 		<%= f.label :cliente_id %><br>
 		<% unless @gasto.id %>
-		<%= f.collection_select(:cliente_id, Cliente.all, :id, :nombre, {:selected => @ultimo_cliente}, {:tabindex =>5}) %>
+		<%= f.collection_select(:cliente_id, @clientes, :id, :nombre, {:selected => @ultimo_cliente}, {:tabindex =>5}) %>
 	<%else%>
-		<%= f.collection_select(:cliente_id, Cliente.all, :id, :nombre, {}, {:tabindex =>5}) %>
+		<%= f.collection_select(:cliente_id, @clientes, :id, :nombre, {}, {:tabindex =>5}) %>
 		<%end%>
 	
 	</div>
