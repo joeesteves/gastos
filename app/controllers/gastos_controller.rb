@@ -39,6 +39,7 @@ class GastosController < ApplicationController
   # GET /gastos/1/edit
 	def edit
 		@gasto = Gasto.find(params[:id])
+    @clientes = Cliente.xUltimoUso(session[:user_id])
 
 		respond_to do |format|	
 			format.js
