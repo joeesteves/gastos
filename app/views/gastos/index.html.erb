@@ -83,5 +83,6 @@
 &nbsp
 <%= link_to 'Mi usuario', edit_user_path(@current_user.id) ,:class=>"noPrint"%>
 &nbsp
+<%= link_to 'XLS', gastos_path(format: "xls", :desde => @desde, :hasta => @hasta), :class=>"noPrint", :id => "XLS" %>
 <%= link_to 'Salir', logout_path ,:class=>"noPrint"%>
 &nbsp

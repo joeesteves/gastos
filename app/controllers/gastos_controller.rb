@@ -24,7 +24,10 @@ class GastosController < ApplicationController
     end
     @clientes = Cliente.xUltimoUso(session[:user_id])
   end
-
+  respond_to do |format|
+    format.html
+    format.xls {send_data @gastos.to_csv}
+  end
   # GET /gastos/1
   # GET /gastos/1.json
   def show

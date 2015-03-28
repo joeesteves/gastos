@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+      <% saldo = 0 + @saldoInicial %>
+        <Cell><Data ss:Type="String">Fecha</Data></Cell>
+        <Cell><Data ss:Type="String">Concepto</Data></Cell>
+        <Cell><Data ss:Type="String">Ingreso</Data></Cell>
+        <Cell><Data ss:Type="String">Egreso</Data></Cell> 
+        <Cell><Data ss:Type="String">Saldo</Data></Cell>
+      </Row>
+    <% @gastos.each do |gasto| %>
+      <Row>
+        <Cell><Data ss:Type="Date"><%= gasto.fecha.strftime("%d/%m/%Y") %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= gasto.concepto %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= gasto.ingreso %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= gasto.egreso %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= saldo = saldo + gasto.ingreso.to_f - gasto.egreso.to_f %> %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
